@@ -7,13 +7,13 @@
 Summary:	Crypt::URandom - Provide non blocking randomness
 Summary(pl.UTF-8):	Crypt::URandom - nieblokująca losowość
 Name:		perl-Crypt-URandom
-Version:	0.54
-Release:	2
+Version:	0.55
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	https://www.cpan.org/modules/by-module/Crypt/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	011113679de05d1c2bea37fe92f60278
+Source0:	https://www.cpan.org/modules/by-module/Crypt/DDICK/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	60c244edf9cdb18e5dd509703672fc20
 URL:		https://metacpan.org/dist/Crypt-URandom
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
