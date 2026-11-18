@@ -15,11 +15,14 @@ Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/Crypt/DDICK/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	60c244edf9cdb18e5dd509703672fc20
 URL:		https://metacpan.org/dist/Crypt-URandom
+BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
+BuildRequires:	perl(Carp) >= 1.26
 BuildRequires:	perl-Test-Pod >= 1.14
+BuildRequires:	perl-Test-Simple
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,11 +45,14 @@ Obecnie obsługiwane są wszystkie obsługujące getrandom(2),
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
+
 %{__make} \
 	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags}"
 
-%{?with_tests:%{__make} test}
+%if %{with tests}
+%{__make} test
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -62,5 +68,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes README
 %{perl_vendorarch}/Crypt/URandom.pm
 %dir %{perl_vendorarch}/auto/Crypt/URandom
-%attr(755,root,root) %{perl_vendorarch}/auto/Crypt/URandom/URandom.so
+%{perl_vendorarch}/auto/Crypt/URandom/URandom.so
 %{_mandir}/man3/Crypt::URandom.3pm*
